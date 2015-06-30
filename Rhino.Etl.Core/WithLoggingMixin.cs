@@ -1,7 +1,6 @@
-using Common.Logging;
-
 namespace Rhino.Etl.Core
 {
+    using Common.Logging;
     using System;
     using System.Collections.Generic;
     using System.Globalization;
@@ -19,7 +18,9 @@ namespace Rhino.Etl.Core
         /// </summary>
         protected WithLoggingMixin()
         {
-            log = LogManager.GetLogger(GetType());
+            var t = System.Type.GetType("Common.Logging.LogManager, Common.Logging");
+            var m = t.GetMethod("GetLogger", new[] { typeof(Type) });
+            log = (ILog)m.Invoke(null, new[] { GetType() });
         }
 
         /// <summary>

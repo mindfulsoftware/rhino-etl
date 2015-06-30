@@ -21,7 +21,7 @@
 param(
   [string]$buildFile = 'default.ps1',
   [string[]]$taskList = @(),
-  [string]$framework = '3.5',
+  [string]$framework = '4.0',
   [switch]$debug = $false,
   [switch]$help  = $false,
   [switch]$timing = $false,
@@ -170,6 +170,7 @@ function Configure-BuildEnvironment {
     '2.0' { $version = 'v2.0.50727' }
     '3.0' { $version = 'v2.0.50727' } # .NET 3.0 uses the .NET 2.0 compilers
     '3.5' { $version = 'v3.5'       }
+	'4.0' { $version = 'v4.0.30319' }
     default { throw "Error: Unknown .NET Framework version, $framework" }
   }
   $frameworkDir = "$env:windir\Microsoft.NET\Framework\$version\"
